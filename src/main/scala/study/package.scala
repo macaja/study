@@ -1,3 +1,4 @@
+package study
 
 import com.trueaccord.scalapb.GeneratedMessage
 

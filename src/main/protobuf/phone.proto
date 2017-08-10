@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package study.protobuf;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/wrappers.proto";
+
+message PhoneData {
+    option (scalapb.message).extends = "study.EventMessage";
+    google.protobuf.StringValue number           = 1;
+    google.protobuf.StringValue color            = 2;
+}

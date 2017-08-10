@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package sbux.ucp.rew.protobuf;
+
+import "scalapb/scalapb.proto";
+
+message TestProtobufEvent {
+    option (scalapb.message).extends = "study.EventMessage";
+    string from = 1;
+    string occurred = 2;
+    string name = 3;
+}

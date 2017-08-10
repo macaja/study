@@ -1,15 +1,21 @@
-package study.monix.producer
+/*
+ *  rewards-members-core
+ *  Copyright © Starbucks 2017
+ */
+
+package sbux.ucp.rew.infrastructure.adapters.kafka.producer
 
 import monix.eval.Task
 import monix.execution.Scheduler
 import monix.kafka.{KafkaProducer, KafkaProducerConfig, Serializer => MonixSerializer}
 import org.apache.kafka.clients.producer.{ProducerRecord, RecordMetadata}
 import study.Event
+import study.configuration.kafka.KafkaEncoder
 import study.configuration.logging.Logger
 import study.configuration.logging.Syntax._
-import study.monix.KafkaEncoder
 
-import scala.concurrent.duration.{FiniteDuration, _}
+import scala.concurrent.duration._
+import scala.concurrent.duration.FiniteDuration
 import scala.util.control.NoStackTrace
 
 class Publisher[K: MonixSerializer](cfg: KafkaProducerConfig, timeout: FiniteDuration = 30.seconds) extends Logger {
