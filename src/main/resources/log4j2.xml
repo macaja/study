@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%highlight{%date{ISO8601} %level %logger %MDC [%X{akkaSource}] -> %m%n%rEx{full}}{FATAL=red, ERROR=red, WARN=yellow, INFO=blue, DEBUG=blue, TRACE=blue}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- App -->
+        <Logger name="study" level="INFO"/>
+        <!-- Config - to review configurations -->
+        <Logger name="com.datastax.driver.core.policies.DCAwareRoundRobinPolicy" level="OFF"/>
+        <Logger name="com.datastax.driver.core.SystemProperties" level="OFF"/>
+        <Logger name="io.netty.util.internal.PlatformDependent" level="OFF"/>
+        <Logger name="io.netty.util.internal.PlatformDependent0" level="OFF"/>
+        <Logger name="org.apache.kafka.clients.consumer.ConsumerConfig" level="OFF"/>
+        <Logger name="org.apache.kafka.clients.producer.ProducerConfig" level="OFF"/>
+        <Logger name="org.apache.kafka.common.utils.AppInfoParser" level="OFF"/>
+        <!-- Debug - to debug app -->
+        <Logger name="akka.actor.ActorSystemImpl" level="ERROR"/>
+        <Logger name="akka.actor.OneForOneStrategy" level="ERROR"/>
+        <Logger name="akka.actor.RepointableActorRef" level="ERROR"/>
+        <Logger name="akka.event.EventStream" level="ERROR"/>
+        <Logger name="akka.kafka.KafkaConsumerActor" level="ERROR"/>
+        <Logger name="akka.kafka.internal.ProducerStage" level="ERROR"/>
+        <Logger name="akka.io.SimpleDnsManager" level="ERROR"/>
+        <Logger name="akka.io.TcpListener" level="ERROR"/>
+        <Logger name="akka.io.TcpOutgoingConnection" level="ERROR"/>
+        <Logger name="akka.stream.Materializer" level="ERROR"/>
+        <Logger name="akka.stream.impl.io.FilePublisher" level="ERROR"/>
+        <Logger name="akka.stream.impl.io.TLSActor" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.AbstractReconnectionHandler" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.ClockFactory" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.Cluster" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.CodecRegistry" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.Connection" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.ControlConnection" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.EventDebouncer" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.HostConnectionPool" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.Host.STATES" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.NettyUtil" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.ReplicationStrategy$NetworkTopologyStrategy" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.RequestHandler" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.Session" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.utils.UUIDs" level="ERROR"/>
+        <Logger name="com.outworkers.phantom" level="ERROR"/>
+        <Logger name="com.outworkers.phantom.connectors.DefaultSessionProvider" level="ERROR"/>
+        <Logger name="com.typesafe.sslconfig.akka.AkkaSSLConfig" level="ERROR"/>
+        <Logger name="com.typesafe.sslconfig.ssl.DefaultHostnameVerifier" level="ERROR"/>
+        <Logger name="io.netty.buffer.AbstractByteBuf" level="ERROR"/>
+        <Logger name="io.netty.buffer.ByteBufUtil" level="ERROR"/>
+        <Logger name="io.netty.buffer.PooledByteBufAllocator" level="ERROR"/>
+        <Logger name="io.netty.channel.DefaultChannelPipeline" level="ERROR"/>
+        <Logger name="io.netty.channel.MultithreadEventLoopGroup" level="ERROR"/>
+        <Logger name="io.netty.channel.nio.NioEventLoop" level="ERROR"/>
+        <Logger name="io.netty.util.internal.logging.InternalLoggerFactory" level="ERROR"/>
+        <Logger name="io.netty.util.internal.ThreadLocalRandom" level="ERROR"/>
+        <Logger name="io.netty.util.NetUtil" level="ERROR"/>
+        <Logger name="io.netty.util.Recycler" level="ERROR"/>
+        <Logger name="io.netty.util.ResourceLeakDetector" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.Metadata" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.NetworkClient" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.consumer.KafkaConsumer" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.consumer.internals.AbstractCoordinator" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.consumer.internals.ConsumerCoordinator" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.consumer.internals.ConsumerNetworkClient" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.consumer.internals.Fetcher" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.producer.KafkaProducer" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.producer.internals.RecordAccumulator" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.producer.internals.RecordBatch" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.producer.internals.Sender" level="ERROR"/>
+        <Logger name="org.apache.kafka.common.metrics.Metrics" level="ERROR"/>
+        <Logger name="org.apache.kafka.common.network.Selector" level="ERROR"/>
+        <Logger name="org.apache.kafka.common.network.MultiSend" level="ERROR"/>
+        <Logger name="product-catalog-streaming-it/Pool(shared->" level="ERROR"/>
+        <Root level="TRACE">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>

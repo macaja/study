@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <JsonLayout compact="true" eventEol="true" properties="true"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- App -->
+        <Logger name="study" level="INFO"/>
+        <!-- Config - to review configurations -->
+        <Logger name="akka.cluster.Cluster(akka://members-http-system)" level="ERROR"/>
+        <Logger name="akka.cluster.singleton.ClusterSingletonManager" level="ERROR"/>
+        <Logger name="akka.cluster.singleton.ClusterSingletonProxy" level="ERROR"/>
+        <Logger name="akka.io.TcpListener" level="ERROR"/>
+        <Logger name="akka.io.SelectionHandler" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.policies.DCAwareRoundRobinPolicy" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.HostConnectionPool" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.Session" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.SystemProperties" level="ERROR"/>
+        <Logger name="com.zaxxer.hikari.HikariConfig" level="ERROR"/>
+        <Logger name="kafka.server.KafkaConfig" level="ERROR"/>
+        <Logger name="org.apache.cassandra.config" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients.producer.ProducerConfig" level="ERROR"/>
+        <Logger name="org.apache.kafka.common.utils.AppInfoParser" level="ERROR"/>
+        <!-- Debug - to debug app -->
+        <Logger name="ActorConfiguration\$" level="ERROR"/>
+        <Logger name="akka.actor" level="ERROR"/>
+        <Logger name="akka.cluster" level="ERROR"/>
+        <Logger name="akka.event" level="ERROR"/>
+        <Logger name="akka.http" level="ERROR"/>
+        <Logger name="akka.io" level="ERROR"/>
+        <Logger name="akka.remote" level="ERROR"/>
+        <Logger name="akka.serialization" level="ERROR"/>
+        <Logger name="akka.serialization.Serialization(akka://members-http-system)" level="ERROR"/>
+        <Logger name="akka.serialization.Serialization(akka://members-kafka-system)" level="ERROR"/>
+        <Logger name="CodaHaleBackend" level="ERROR"/>
+        <Logger name="com.datastax.driver.core" level="ERROR"/>
+        <Logger name="com.datastax.driver.core.ControlConnection" level="ERROR"/>
+        <Logger name="com.outworkers.phantom" level="ERROR"/>
+        <Logger name="com.outworkers.phantom.macros.TableHelperMacro" level="ERROR"/>
+        <Logger name="com.softwaremill.react.kafka" level="ERROR"/>
+        <Logger name="com.typesafe.slick.SlickExtensions" level="ERROR"/>
+        <Logger name="com.typesafe.sslconfig.akka.AkkaSSLConfig" level="ERROR"/>
+        <Logger name="com.zaxxer.hikari" level="ERROR"/>
+        <Logger name="com.zaxxer.hikari.pool" level="ERROR"/>
+        <Logger name="com.zaxxer.hikari.util.DriverDataSource" level="ERROR"/>
+        <Logger name="io.netty" level="ERROR"/>
+        <Logger name="io.netty.channel" level="ERROR"/>
+        <Logger name="io.swagger" level="INFO"/>
+        <Logger name="kafka" level="ERROR"/>
+        <Logger name="kafka.controller" level="ERROR"/>
+        <Logger name="kafka.coordinator" level="ERROR"/>
+        <Logger name="kafka.server" level="ERROR"/>
+        <Logger name="kafka.utils" level="ERROR"/>
+        <Logger name="org.cassandraunit" level="ERROR"/>
+        <Logger name="org.apache.cassandra" level="ERROR"/>
+        <Logger name="org.apache.kafka.clients" level="ERROR"/>
+        <Logger name="org.apache.kafka.common.metrics" level="ERROR"/>
+        <Logger name="org.apache.kafka.common.network" level="ERROR"/>
+        <Logger name="org.apache.kafka.common.network.Selector" level="ERROR"/>
+        <Logger name="org.apache.zookeeper" level="ERROR"/>
+        <Logger name="org.I0Itec" level="ERROR"/>
+        <Logger name="Sigar" level="ERROR"/>
+        <Logger name="slick.backend" level="ERROR"/>
+        <Logger name="slick.jdbc" level="ERROR"/>
+        <Logger name="state.change.logger" level="ERROR"/>
+        <Root level="DEBUG">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>

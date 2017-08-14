@@ -3,7 +3,7 @@ package study.configuration
 import cats.data.NonEmptyList
 import cats.implicits.{catsSyntaxEither, catsSyntaxUCartesian}
 import com.typesafe.config.{Config, ConfigFactory}
-import monix.kafka.KafkaProducerConfig
+import monix.kafka.{KafkaConsumerConfig, KafkaProducerConfig}
 import pureconfig._
 import pureconfig.error._
 import study.configuration.kafka.{KafkaConsumerTopics, KafkaProducerDefaultConfig, KafkaProducerTopics}
@@ -27,6 +27,9 @@ object DefaultConfig extends ConfigApp with Logger{
   val kafkaProducerConfig: KafkaProducerDefaultConfig = KafkaProducerDefaultConfig(
     producerConf = KafkaProducerConfig(config.as[Config]("study.kafka.producer.clients"))
   )
+
+  val kafkaConsumerConfig: KafkaConsumerConfig =
+    KafkaConsumerConfig(config.as[Config]("study.kafka.consumer.clients"))
 
   private[configuration] def throwException(failures: NonEmptyList[ConfigReaderFailures]): Nothing = {
     val msg: String = buildMessage(failures)

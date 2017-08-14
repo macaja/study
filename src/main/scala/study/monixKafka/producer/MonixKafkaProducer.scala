@@ -32,7 +32,7 @@ class Publisher[K: MonixSerializer](cfg: KafkaProducerConfig, timeout: FiniteDur
       )
       .onErrorRecoverWith {
         case ex =>
-          logger.error("Failed to publish kafka message", ex)
+          println("Failed to publish kafka message", ex)
           logger.errorWithMdc(
             s"Failed to publish kafka message ${ex.getMessage}",
             Map(
