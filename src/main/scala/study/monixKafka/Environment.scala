@@ -1,4 +1,4 @@
-package study.monix
+package study.monixKafka
 
 import study.configuration.ConfigApp
 

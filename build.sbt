@@ -20,6 +20,7 @@ lazy val root = (project in file(".")).
         scalaPb, // Generate case class's based on .proto's
         scalapbGrpc, // Allow generate services GRPC in protobuf
         pureconfig, // To load configuration
+        ficus, //allow config.as[Config] in DefaultConfig
         cats
       )
     }

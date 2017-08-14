@@ -1,9 +1,4 @@
-/*
- *  rewards-members-core
- *  Copyright © Starbucks 2017
- */
-
-package sbux.ucp.rew.infrastructure.adapters.kafka.producer
+package study.monixKafka.producer
 
 import monix.eval.Task
 import monix.execution.Scheduler

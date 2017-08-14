@@ -1,6 +1,7 @@
 package study.configuration
 
 import com.trueaccord.scalapb.{GeneratedMessage, GeneratedMessageCompanion, Message}
+import monix.kafka.KafkaProducerConfig
 import study.EventMessage
 
 import scala.util.Try
@@ -12,6 +13,7 @@ package object kafka {
 
   case class KafkaConsumerTopics(exampleTopic: String)
   case class KafkaProducerTopics(exampleTopic: String)
+  case class KafkaProducerDefaultConfig(producerConf: KafkaProducerConfig)
 
   object KafkaEncoder {
 

@@ -1,12 +1,15 @@
 package study
 
-import sbux.ucp.rew.infrastructure.adapters.kafka.producer.Publisher
+import monix.execution.Scheduler
 import study.configuration.logging.Logger
 import study.configuration.{ConfigApp, DefaultConfig}
-import study.monix.Environment
+import study.monixKafka.Environment
+import study.monixKafka.producer.Publisher
 import study.protobuf.phone.PhoneData
 
 object KafkaMain extends App with Logger{
+
+  implicit val scheduler = Scheduler.global
 
   val environment = new Environment {
     override val config: ConfigApp = DefaultConfig
@@ -19,5 +22,5 @@ object KafkaMain extends App with Logger{
       Some("grey")
     )
   )
-  Publisher(environment.config.kafkaProducerConfig).publish(event).runAsync
+  Publisher[Array[Byte]](environment.config.kafkaProducerConfig.producerConf).publish(event).runAsync
 }

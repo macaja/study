@@ -8,4 +8,5 @@ object Dependencies {
   lazy val scalapbGrpc = "com.trueaccord.scalapb" %% "scalapb-runtime-grpc" % com.trueaccord.scalapb.compiler.Version.scalapbVersion
   lazy val pureconfig = "com.github.pureconfig" %% "pureconfig" % "0.7.2"
   lazy val cats = "org.typelevel" %% "cats" % "0.9.0" withSources () withJavadoc ()
+  lazy val ficus = "com.iheart" %% "ficus" % "1.4.0"
 }
