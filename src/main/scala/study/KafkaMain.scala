@@ -26,12 +26,9 @@ object KafkaMain extends App with Logger{
     )
   )
 
-  println("Estoy en kafka main")
-
   Publisher[Array[Byte]](environment.config.kafkaProducerConfig.producerConf).publish(event).runAsync
 
   def consume = {
-    println("EMPEZÓ EL CONSUME")
     MonixKafkaConsumer.consume[PhoneData](environment.config.kafkaConsumerTopics.exampleTopic)
       .map{
         msg =>

@@ -1,11 +1,11 @@
 import Dependencies._
+import sbt.addCommandAlias
 
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "mauricio",
-      scalaVersion := "2.12.3",
-      version      := "0.1.0-SNAPSHOT"
+      scalaVersion := "2.12.3"
     )),
     name := "Study",
     PB.protoSources in Compile ++= Seq((sourceDirectory in Test).value / "protobuf"),
@@ -21,7 +21,25 @@ lazy val root = (project in file(".")).
         scalapbGrpc, // Allow generate services GRPC in protobuf
         pureconfig, // To load configuration
         ficus, //allow config.as[Config] in DefaultConfig
-        cats
+        cats,
+        "org.apache.logging.log4j" % "log4j-1.2-api"             % "2.8.2",
+        "org.apache.logging.log4j" % "log4j-api"                 % "2.8.2",
+        "org.apache.logging.log4j" % "log4j-core"                % "2.8.2",
+        "org.apache.logging.log4j" % "log4j-jcl"                 % "2.8.2",
+        "org.apache.logging.log4j" % "log4j-jul"                 % "2.8.2",
+        "org.apache.logging.log4j" % "log4j-slf4j-impl"          % "2.8.2"
       )
-    }
+    },
+    excludeDependencies ++= Seq(
+      "log4j"                    % "log4j",
+      "org.apache.logging.log4j" % "log4j-to-slf4j",
+      "org.slf4j"                % "log4j-over-slf4j",
+      "ch.qos.logback"           % "logback-core",
+      "org.slf4j"                % "jcl-over-slf4j",
+      "org.slf4j"                % "jul-to-slf4j"
+    )
   )
+
+addCommandAlias("validate", ";clean;test:scalafmt;test;it:test")
+addCommandAlias("review", ";clean;coverage;test:scalafmt;test;it:test;coverageReport")
+addCommandAlias("dependencies", ";dependencyUpdates;evicted")
