@@ -2,11 +2,11 @@ package study.monixKafka.consumer
 
 import monix.kafka.KafkaConsumerObservable
 import monix.reactive.Observable
-import study.configuration.ConfigApp
 import study.configuration.kafka.{KafkaEncoder, KafkaMessage}
+import study.configuration.logging.Logger
 import study.monixKafka.Environment
 
-object MonixKafkaConsumer {
+object MonixKafkaConsumer extends Logger{
 
   def consume[T <: KafkaMessage[T]](topic: String)(
                                      implicit companion: KafkaEncoder[T],
@@ -22,6 +22,12 @@ object MonixKafkaConsumer {
       }
       .filter { case (_, entity) => entity.isSuccess }
       .map { case (offset, entity) => (offset, entity.get) }
+      .onErrorRecoverWith{
+        case ex =>
+          logger.error("Failed to consume kafka message", ex)
+          Observable.raiseError(ex)
+     }
+
   }
 
 }

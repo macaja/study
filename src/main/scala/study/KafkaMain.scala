@@ -30,11 +30,7 @@ object KafkaMain extends App with Logger{
 
   def consume = {
     MonixKafkaConsumer.consume[PhoneData](environment.config.kafkaConsumerTopics.exampleTopic)
-      .map{
-        msg =>
-          val (_,eve) = msg
-          println(s"El evento consumido es: $eve")
-      }
+      .dump("THE CONSUMED EVENT")
       .bufferTimedWithPressure(1.seconds, 20)
       .onErrorRestart(3L)
       .subscribe()
