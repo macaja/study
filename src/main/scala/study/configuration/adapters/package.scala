@@ -15,6 +15,12 @@ package object kafka {
   case class KafkaProducerTopics(exampleTopic: String)
   case class KafkaProducerDefaultConfig(producerConf: KafkaProducerConfig)
 
+
+  case class TestConsumer(group:String)
+  case class MembershipConsumer(group:String)
+  case class KafkaConsumerGroups(testConsumer: TestConsumer,membershipConsumer:MembershipConsumer)
+
+
   object KafkaEncoder {
 
     def serialize[T <: EventMessage](data: T): Array[Byte] = data.toByteArray

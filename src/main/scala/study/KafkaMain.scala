@@ -1,11 +1,10 @@
 package study
 
 import monix.execution.Scheduler
+import study.configuration.adapters.{MonixKafkaConsumer, Publisher}
 import study.configuration.logging.Logger
 import study.configuration.{ConfigApp, DefaultConfig}
 import study.monixKafka.Environment
-import study.monixKafka.consumer.MonixKafkaConsumer
-import study.monixKafka.producer.Publisher
 import study.protobuf.phone.PhoneData
 
 import scala.concurrent.duration._
@@ -18,16 +17,15 @@ object KafkaMain extends App with Logger{
     override val config: ConfigApp = DefaultConfig
   }
 
-  val event: Event = Event(
+  /*val event: Event = Event(
     environment.config.kafkaProducerTopics.exampleTopic,
     PhoneData(
-      Some("99999999"),
-      Some("Pepe9")
+      Some("111111"),
+      Some("Andres1")
     )
   )
 
-  Publisher[Array[Byte]](environment.config.kafkaProducerConfig.producerConf).publish(event).runAsync
-
+  Publisher[Array[Byte]](environment.config.kafkaProducerConfig.producerConf).publish(event).runAsync*/
   def consume = {
     MonixKafkaConsumer.consume[PhoneData](environment.config.kafkaConsumerTopics.exampleTopic)
       .dump("THE CONSUMED EVENT")

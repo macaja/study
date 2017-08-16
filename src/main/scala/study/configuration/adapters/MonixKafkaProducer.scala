@@ -1,4 +1,4 @@
-package study.monixKafka.producer
+package study.configuration.adapters
 
 import monix.eval.Task
 import monix.execution.Scheduler
@@ -9,8 +9,7 @@ import study.configuration.kafka.KafkaEncoder
 import study.configuration.logging.Logger
 import study.configuration.logging.Syntax._
 
-import scala.concurrent.duration._
-import scala.concurrent.duration.FiniteDuration
+import scala.concurrent.duration.{FiniteDuration, _}
 import scala.util.control.NoStackTrace
 
 class Publisher[K: MonixSerializer](cfg: KafkaProducerConfig, timeout: FiniteDuration = 30.seconds) extends Logger {

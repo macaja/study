@@ -6,7 +6,7 @@ import com.typesafe.config.{Config, ConfigFactory}
 import monix.kafka.{KafkaConsumerConfig, KafkaProducerConfig}
 import pureconfig._
 import pureconfig.error._
-import study.configuration.kafka.{KafkaConsumerTopics, KafkaProducerDefaultConfig, KafkaProducerTopics}
+import study.configuration.kafka.{KafkaConsumerGroups, KafkaConsumerTopics, KafkaProducerDefaultConfig, KafkaProducerTopics}
 import study.configuration.logging.Logger
 import net.ceedubs.ficus.Ficus._
 
@@ -18,11 +18,12 @@ object DefaultConfig extends ConfigApp with Logger{
   val config = ConfigFactory.load()
   val validateConfiguration =
     (
-      loadConfig[KafkaConsumerTopics](config,"study.kafka.topic.consumer").toValidatedNel |@|
-        loadConfig[KafkaProducerTopics](config, "study.kafka.topic.producer").toValidatedNel
+        loadConfig[KafkaConsumerTopics](config,"study.kafka.consumer.topics").toValidatedNel |@|
+        loadConfig[KafkaProducerTopics](config, "study.kafka.producer.topics").toValidatedNel |@|
+      loadConfig[KafkaConsumerGroups](config, "study.kafka.consumer.groups").toValidatedNel
     ).tupled
 
-  val (kafkaConsumerTopics, kafkaProducerTopics) = validateConfiguration.fold(throwException, identity)
+  val (kafkaConsumerTopics, kafkaProducerTopics, kafkaConsumerGroups) = validateConfiguration.fold(throwException, identity)
 
   val kafkaProducerConfig: KafkaProducerDefaultConfig = KafkaProducerDefaultConfig(
     producerConf = KafkaProducerConfig(config.as[Config]("study.kafka.producer.clients"))
@@ -30,6 +31,9 @@ object DefaultConfig extends ConfigApp with Logger{
 
   val kafkaConsumerConfig: KafkaConsumerConfig =
     KafkaConsumerConfig(config.as[Config]("study.kafka.consumer.clients"))
+
+  val kafkaConsumerConfig2: KafkaConsumerConfig =
+    KafkaConsumerConfig(config.as[Config]("study.kafka.consumer.clients2"))
 
   private[configuration] def throwException(failures: NonEmptyList[ConfigReaderFailures]): Nothing = {
     val msg: String = buildMessage(failures)

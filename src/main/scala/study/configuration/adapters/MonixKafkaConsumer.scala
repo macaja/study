@@ -1,4 +1,4 @@
-package study.monixKafka.consumer
+package study.configuration.adapters
 
 import monix.kafka.KafkaConsumerObservable
 import monix.reactive.Observable
@@ -12,8 +12,9 @@ object MonixKafkaConsumer extends Logger{
                                      implicit companion: KafkaEncoder[T],
                                      environment: Environment
                                    ): Observable[(Long, T)] = {
-    val value = KafkaConsumerObservable[Array[Byte], Array[Byte]](
-      environment.config.kafkaConsumerConfig,
+    logger.info(s"El group es  => ${environment.config.kafkaConsumerConfig2.groupId}")
+    val value: KafkaConsumerObservable[Array[Byte], Array[Byte]] = KafkaConsumerObservable[Array[Byte], Array[Byte]](
+      environment.config.kafkaConsumerConfig2,
       List(topic)
     )
     value
