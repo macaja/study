@@ -20,7 +20,7 @@ object DefaultConfig extends ConfigApp with Logger{
     (
         loadConfig[KafkaConsumerTopics](config,"study.kafka.consumer.topics").toValidatedNel |@|
         loadConfig[KafkaProducerTopics](config, "study.kafka.producer.topics").toValidatedNel |@|
-      loadConfig[KafkaConsumerGroups](config, "study.kafka.consumer.groups").toValidatedNel
+        loadConfig[KafkaConsumerGroups](config, "study.kafka.consumer.groups").toValidatedNel
     ).tupled
 
   val (kafkaConsumerTopics, kafkaProducerTopics, kafkaConsumerGroups) = validateConfiguration.fold(throwException, identity)
@@ -31,9 +31,6 @@ object DefaultConfig extends ConfigApp with Logger{
 
   val kafkaConsumerConfig: KafkaConsumerConfig =
     KafkaConsumerConfig(config.as[Config]("study.kafka.consumer.clients"))
-
-  val kafkaConsumerConfig2: KafkaConsumerConfig =
-    KafkaConsumerConfig(config.as[Config]("study.kafka.consumer.clients2"))
 
   private[configuration] def throwException(failures: NonEmptyList[ConfigReaderFailures]): Nothing = {
     val msg: String = buildMessage(failures)

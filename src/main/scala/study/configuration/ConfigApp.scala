@@ -9,7 +9,6 @@ trait ConfigApp {
   def kafkaConsumerTopics: KafkaConsumerTopics
   def kafkaProducerTopics: KafkaProducerTopics
   def kafkaConsumerConfig: KafkaConsumerConfig
-  def kafkaConsumerConfig2: KafkaConsumerConfig
   def kafkaConsumerGroups: KafkaConsumerGroups
   def kafkaProducerConfig: KafkaProducerDefaultConfig
 }

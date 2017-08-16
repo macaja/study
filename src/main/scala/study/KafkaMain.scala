@@ -17,21 +17,21 @@ object KafkaMain extends App with Logger{
     override val config: ConfigApp = DefaultConfig
   }
 
-  /*val event: Event = Event(
+  val event: Event = Event(
     environment.config.kafkaProducerTopics.exampleTopic,
     PhoneData(
-      Some("111111"),
-      Some("Andres1")
+      Some("555555"),
+      Some("Bety5")
     )
   )
+  Publisher[Array[Byte]](environment.config.kafkaProducerConfig.producerConf).publish(event).runAsync
 
-  Publisher[Array[Byte]](environment.config.kafkaProducerConfig.producerConf).publish(event).runAsync*/
-  def consume = {
-    MonixKafkaConsumer.consume[PhoneData](environment.config.kafkaConsumerTopics.exampleTopic)
+  /*def consume = {
+    MonixKafkaConsumer.consume[PhoneData](environment.config.kafkaConsumerGroups.testConsumer.group,environment.config.kafkaConsumerTopics.exampleTopic)
       .dump("THE CONSUMED EVENT")
       .bufferTimedWithPressure(1.seconds, 20)
       .onErrorRestart(3L)
       .subscribe()
   }
-  consume
+  consume*/
 }
