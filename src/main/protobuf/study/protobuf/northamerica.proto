@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package study.protobuf;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/wrappers.proto";
+import "study/protobuf/metadata.proto";
+
+message TierHistorySyndication {
+    option (scalapb.message).extends = "study.EventMessage";
+
+    google.protobuf.StringValue             membership_id                 = 1;
+    ZonedTimestamp                          previous_tier_process_date    = 2;
+    google.protobuf.StringValue             previous_tier_id              = 3;
+    ZonedTimestamp                          current_tier_process_date     = 4;
+    google.protobuf.StringValue             current_tier_id               = 5;
+    google.protobuf.StringValue             active_flag                   = 6;
+    google.protobuf.Int32Value              previous_tier_sequence_number = 7;
+    ZonedTimestamp                          created_date                  = 8;
+    ZonedTimestamp                          updated_date                  = 9;
+    google.protobuf.StringValue             unique_id                     = 10;
+    ZonedTimestamp                          tier_start_date               = 11;
+    ZonedTimestamp                          tier_reevaluation_date        = 12;
+    google.protobuf.Int32Value              current_tier_points           = 13;
+    google.protobuf.Int32Value              current_tier_sequence_number  = 14;
+}

@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package study.protobuf;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "study/protobuf/metadata.proto";
+
+enum Status {
+    INACTIVE = 0;
+    ACTIVE = 1;
+}
+
+message ProgramConfig {
+    option (scalapb.message).extends = "study.EventMessage";
+    enum ProgramType {
+        MSR = 0;
+    }
+
+    google.protobuf.StringValue id                  = 1;
+    Status                      status              = 2;
+    ProgramType                 type                = 3;
+    google.protobuf.StringValue name                = 4;
+    google.protobuf.StringValue geography           = 5;
+    google.protobuf.StringValue currency            = 6;
+    google.protobuf.StringValue reevaluation_period = 7;
+    google.protobuf.Timestamp   start_time          = 8;
+    google.protobuf.Timestamp   create_time         = 9;
+    google.protobuf.Timestamp   update_time         = 10;
+    repeated PointTypeConfig    point_types         = 11;
+    repeated TierConfig         tiers               = 13;
+}
+
+message PointTypeConfig {
+
+    enum DateAdjuster {
+        FIRST_DAY_OF_NEXT_MONTH = 0;
+    }
+
+    message Expiration {
+        google.protobuf.StringValue period   = 1;
+        DateAdjuster                adjuster = 2;
+    }
+
+    google.protobuf.StringValue id          = 1;
+    Status                      status      = 2;
+    google.protobuf.StringValue code        = 3;
+    google.protobuf.StringValue name        = 4;
+    Expiration                  expiration  = 5;
+    google.protobuf.Timestamp   create_time = 6;
+    google.protobuf.Timestamp   update_time = 7;
+}
+
+message PointAmount {
+    google.protobuf.StringValue point_type  = 1;
+    google.protobuf.DoubleValue amount      = 2;
+}
+
+message TierConfig {
+    google.protobuf.StringValue     id                  = 1;
+    google.protobuf.Int32Value      number              = 2;
+    Status                          status              = 3;
+    google.protobuf.StringValue     code                = 4;
+    google.protobuf.StringValue     name                = 5;
+    google.protobuf.StringValue     external_name       = 6;
+    google.protobuf.BoolValue       top                 = 7;
+    google.protobuf.BoolValue       default             = 8;
+    repeated string                 point_types         = 9;
+    PointAmount                     entry_threshold     = 10;
+    PointAmount                     exit_threshold      = 11;
+    repeated RedemptionLevelConfig  redemption_levels   = 12;
+    google.protobuf.Timestamp       create_time         = 13;
+    google.protobuf.Timestamp       update_time         = 14;
+}
+
+message RedemptionLevelConfig {
+    google.protobuf.StringValue name    = 1;
+    PointAmount                 level   = 2;
+    google.protobuf.Int32Value  code    = 3;
+}

@@ -12,7 +12,7 @@ package object kafka {
   type KafkaEncoder[E <: KafkaMessage[E]] = GeneratedMessageCompanion[E]
 
   case class KafkaConsumerTopics(exampleTopic: String)
-  case class KafkaProducerTopics(exampleTopic: String)
+  case class KafkaProducerTopics(exampleTopic: String,memberSyndication:String, programSyndication:String, tierHistorySyndication: String)
   case class KafkaProducerDefaultConfig(producerConf: KafkaProducerConfig)
 
 
